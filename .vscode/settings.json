@@ -1,0 +1,8 @@
+{
+    "editor.defaultFormatter": "HookyQR.beautify",
+    "[html]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
+}
