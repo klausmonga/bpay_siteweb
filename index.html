@@ -6,9 +6,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="profile" href="https://gmpg.org/xfn/11" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <script>
     document.documentElement.className = document.documentElement.className + ' yes-js js_active js'
   </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   <script>
     function loadAsync(e, t) {
       var a, n = !1;
@@ -62240,49 +62243,27 @@ rel="stylesheet" href="https://radiustheme.com/demo/wordpress/themes/digeco/wp-c
     }
   </script>
 
-  <script>
+  
 
-    $(document).ready(function() {
-
-// Gets the video src from the data-src on each button
-
-      var $videoSrc;  
-      $('.video-btn').click(function() {
-          $videoSrc = $(this).data( "src" );
-      });
-      console.log($videoSrc);
-      
-        
-        
-      // when the modal is opened autoplay it  
-      $('#myModal').on('shown.bs.modal', function (e) {
-          
-      // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
-      $("#video").attr('src',$videoSrc + "?autoplay=1&modestbranding=1&showinfo=0" ); 
-      })
-        
-      
-      
-      // stop playing the youtube video when I close the modal
-      $('#myModal').on('hide.bs.modal', function (e) {
-          // a poor man's stop video
-          $("#video").attr('src',$videoSrc); 
-      }) 
-          
-          
-      
-      
-        
-        
-      // document ready  
-      });
-      
-
-
-
-
-  </script>
-
+<script>
+$(document).ready(function(){
+    /* Get iframe src attribute value i.e. YouTube video url
+    and store it in a variable */
+    var url = $("#cartoonVideo").attr('src');
+    
+    /* Assign empty url value to the iframe src attribute when
+    modal hide, which stop the video playing */
+    $("#myModal").on('hide.bs.modal', function(){
+        $("#cartoonVideo").attr('src', '');
+    });
+    
+    /* Assign the initially stored url back to the iframe src
+    attribute when modal is displayed again */
+    $("#myModal").on('show.bs.modal', function(){
+        $("#cartoonVideo").attr('src', url);
+    });
+});
+</script>
 
 </head>
 
@@ -62569,10 +62550,8 @@ rel="stylesheet" href="https://radiustheme.com/demo/wordpress/themes/digeco/wp-c
                                   data-xy="xo:210px,173px,175px,170px;yo:620px,512px,320px,616px;"
                                   data-text="w:normal;s:17,14,16,16;l:40,33,25,18;fw:500;" data-frame_0="y:50,41,31,19;"
                                   data-frame_1="e:sine.in;st:2800;sp:500;sR:2800;" data-frame_999="o:0;st:w;sR:5700;"
-                                  style="z-index:11;font-family:Roboto;"><button type="button" data-toggle="modal"
-                                    data-src="https://youtu.be/nJAKv3jtMZw" data-target="#myModal"
-                                    class="btn btn-primary video-btn">Démo</button>
-                                </rs-layer>
+                                  style="z-index:11;font-family:Roboto;">
+                                  <a href="#myModal" class="btn btn-primary btn-lg" data-toggle="modal"> Demo </a></rs-layer>
                               </rs-slide>
                             </rs-slides>
                           </rs-module>
@@ -63729,8 +63708,34 @@ rel="stylesheet" href="https://radiustheme.com/demo/wordpress/themes/digeco/wp-c
           </footer>
         </div>
 
+ 
+<div id="myModal" class="modal fade">
+        <div class="modal-dialog" style = " max-width: 800px;
+                                                     margin: 30px auto;">
+            <div class="modal-content">
+                
+                    
+                    <button type="button" class="close" data-dismiss="modal"  style = "position:absolute;
+                                                                                            right:-30px;
+                                                                                            top:0;
+                                                                                            z-index:999;
+                                                                                            font-size:2rem;
+                                                                                            font-weight: normal;
+                                                                                            color:#fff;
+                                                                                            opacity:1;">&times;</button>
+                
+                <div class="modal-body" style = "position:relative;
+                                        padding:0px;">
+                  <div class="embed-responsive embed-responsive-16by9">
+                    <iframe id="cartoonVideo" class="embed-responsive-item" width="560" height="315" src="//www.youtube.com/embed/nJAKv3jtMZw" allowfullscreen></iframe>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <!-- Modal -->
+
+        <!-- Modal 
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document" style = "max-width: 800px;
                                                               margin: 30px auto;" >
@@ -63750,7 +63755,7 @@ rel="stylesheet" href="https://radiustheme.com/demo/wordpress/themes/digeco/wp-c
                                                                                                           opacity:1;" 
                       <span aria-hidden="true"> &times;</span>
                     </button>        
-                    <!-- 16:9 aspect ratio -->
+                    
                     <div class="embed-responsive embed-responsive-16by9">
                       <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
                     </div>
@@ -63760,7 +63765,7 @@ rel="stylesheet" href="https://radiustheme.com/demo/wordpress/themes/digeco/wp-c
               </div>
             </div>
         </div> 
-
+      -->
 
 
 
